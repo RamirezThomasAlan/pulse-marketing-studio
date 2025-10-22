@@ -44,11 +44,27 @@ window.addEventListener('scroll', function() {
 });
 
 // Mobile Menu Toggle
-const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-const navLinks = document.querySelector('.nav-links');
+document.addEventListener("DOMContentLoaded", () => {
+    const mobileMenuBtn = document.querySelector(".mobile-menu-btn");
+    const navLinks = document.querySelector(".nav-links");
 
-mobileMenuBtn.addEventListener('click', function() {
-    navLinks.classList.toggle('active');
+    if (mobileMenuBtn && navLinks) {
+        // Toggle menu al hacer clic en el botón
+        mobileMenuBtn.addEventListener("click", () => {
+            navLinks.classList.toggle("active");
+        });
+
+        // Cerrar menú automáticamente al hacer clic en cualquier link
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener("click", () => {
+                if (navLinks.classList.contains("active")) {
+                    navLinks.classList.remove("active");
+                }
+            });
+        });
+    } else {
+        console.error("No se encontraron los elementos .mobile-menu-btn o .nav-links");
+    }
 });
 
 // Smooth Scrolling for Internal Links
@@ -67,9 +83,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             
             // Update URL without page reload
             history.pushState(null, null, targetId);
-            
-            // Close mobile menu if open
-            navLinks.classList.remove('active');
         }
     });
 });

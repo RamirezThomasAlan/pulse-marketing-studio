@@ -1,6 +1,6 @@
 // Typing Effect
 const typedTextSpan = document.getElementById("typed-text");
-const textArray = ["Estrategias Digitales que Impulsan Resultados."];
+const textArray = ["Estrategias Digitales que Impulsan Resultados"];
 const typingDelay = 100;
 const erasingDelay = 50;
 const newTextDelay = 2000;
